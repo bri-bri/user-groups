@@ -1,4 +1,5 @@
 from flask.ext.restful import Api
+
 from controllers.user_controller import UserController
 from controllers.group_controller import GroupController
 

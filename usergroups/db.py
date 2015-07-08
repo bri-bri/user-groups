@@ -16,13 +16,15 @@ class Db:
         indexes = self.db.get(table_name + "_indexes", None)
         if target is not None and indexes is not None:
             query_fields = {}
-            for key,val in query:
-                if indexes.get(key, None) is not None:
-                    query_fields[indexes['key']] = val
+            if query:
+                print query
+                for key,val in query.iteritems():
+                    if indexes.get(key, None) is not None:
+                        query_fields[indexes[key]] = val
             for doc in target:
                 if bool(query_fields):
                     try:
-                        for index,expected in query_fields:
+                        for index,expected in query_fields.iteritems():
                             if doc[index] != expected:
                                 pass
                     except:
@@ -42,7 +44,6 @@ class Db:
         return results
 
     def insert(self, table_name, row):
-        print "INSERTING", row
         target = self.db.get(table_name, None)
         indexes = self.db.get(table_name + "_indexes", None)
         if target is not None and indexes is not None:

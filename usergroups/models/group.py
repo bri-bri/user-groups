@@ -5,14 +5,15 @@ class Group:
     group_name = None
 
     def __init__(self, group_name = None):
-        self.group_name = group_name
         #classname = self.__class__.__name__
-        db.findOne('groups', {'group_name':group_name})
+        doc = db.findOne('groups', {'group_name':group_name})
+        if doc:
+            self.group_name = doc.group_name
 
     @staticmethod
     def create(group_name):
         db.insert('groups', {'group_name': group_name.get('name', None)})
-        return Group(group_name)
+        return Group(group_name.get('name', None))
 
     def find(self, **kwargs):
         results = []

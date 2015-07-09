@@ -6,6 +6,16 @@ A simple Flask API for storing users and groups of users. Optimized for read-per
 * __Data/Persistence__: Currently uses an in-memory data layer, but this can be swapped easily based on performance/scaling requirements with changes to `usergroups/db.py` and minimal changes to `usergroups/models/base.py`.
 * __Minimal API__ = No dependencies on outside services
 
+#### Work Log
+All work - including research and testing - took about 7.5 hours.
+2015-07-09 PM   - 2.5 hours setting up skeleton
+2015-07-10 NOON - 0.5 hours researching
+2015-07-10 PM   - 2.5 hours finishing core functionality
+2015-07-11 AM   - 1.0 hour attempting unit tests
+2015-07-11 NOON - 1.0 hour doing integration test instead & writing setup instructions
+
+Grand total: 7 hours
+
 # Setup
 #### Requirements
 Any version of python2.7 with setuptools and pip, __Recommended__: virtualenv
@@ -20,7 +30,6 @@ Any version of python2.7 with setuptools and pip, __Recommended__: virtualenv
         1. set env for development configs: ```export USERGROUPS_ENV=DEVELOPMENT```
         2. AND/OR Run on custom port ```python runserver.py --port XXXX```
 
-The steps:
 ```
 git clone git@github.com:bri-bri/user-groups.git && cd user-groups
 virtualenv env && . env/bin/activate

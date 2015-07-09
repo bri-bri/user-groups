@@ -40,12 +40,33 @@ TODO... real unit tests
 2. With request parameters:
 ```curl -i -X POST http://127.0.0.1:5000/users/ -d '{"userid":"user1", "first_name":"John", "last_name": "Doe", "groups":["gentlemen", "scholars"]}' -H "Content-type: application/json"```
 
+# Next Steps
+
+##### Urgently Needed_
+* __Unit Tests__ for controllers and models (partially implemented but not presentable)
+* More __code comments__
+* persistent __log storage__ (w/ improved logging and logger class)
+* __process manager__ config (e.g. supervisord)
+* investigate _datastore_ options based on further requirements and prototype performance
+
+##### Nice-to-haves
+* custom RequestParser
+* custom ExceptionHandler
+* custom ResponseHandler routing all responses
+* metric/performance tracking
+* misc. work to get it running in a distributed remote environment
+
 ## Work Log
 All work - including research and testing - took about 7.5 hours.
-2015-07-09 PM   - 2.5 hours setting up skeleton
+
+2015-07-09 PM     - 2.5 hours setting up skeleton
+
 2015-07-10 NOON - 0.5 hours researching
-2015-07-10 PM   - 2.5 hours finishing core functionality
-2015-07-11 AM   - 1.0 hour attempting unit tests
+
+2015-07-10 PM     - 2.5 hours finishing core functionality
+
+2015-07-11 AM     - 1.0 hour attempting unit tests
+
 2015-07-11 NOON - 1.0 hour doing integration test instead & writing setup instructions
 
 Grand total: 7 hours

@@ -44,10 +44,10 @@ TODO... real unit tests
 
 ##### Urgently Needed_
 * __Unit Tests__ for controllers and models (partially implemented but not presentable)
-* More __code comments__
-* persistent __log storage__ (w/ improved logging and logger class)
+* __Commented__ code
+* Persistent __log storage__ (w/ improved logging and logger class)
 * __process manager__ config (e.g. supervisord)
-* investigate _datastore_ options based on further requirements and prototype performance
+* __Datastore__ options need to be considered based on further requirements and prototype performance
 
 ##### Nice-to-haves
 * custom RequestParser

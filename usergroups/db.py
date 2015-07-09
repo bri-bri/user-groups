@@ -1,67 +1,50 @@
-class Db:
-    db = {'groups': [],
-    'users': [],
-    'users_in_groups': [],
+class Db(object):
+    db = None
 
-    'groups_indexes': {'group_name': 0}, # primary key
-    'users_indexes': {'userid': 0}, # primary key
-    'users_in_groups_indexes': {'user_and_group': 0, 'group_name': 1, 'userid': 2 } # primary key and two foreign keys
-    }
     def __init__(self):
-        self.db
+        super(Db, self).__init__()
+        self.create_all()
 
-    # Find returns a cursor to iterate over results
+    '''Initialization and teardown methods'''
+    def create_all(self):
+        self.db = {
+            'group': [],
+            'user': [],
+            'user_in_group': []
+        }
+
+    def remove_all(self):
+        self.db = None
+
+    # Returns a cursor to iterate over results
     def find(self, table_name, query):
         target = self.db.get(table_name, None)
-        indexes = self.db.get(table_name + "_indexes", None)
-        if target is not None and indexes is not None:
-            query_fields = {}
-            if query:
-                print query
-                for key,val in query.iteritems():
-                    if indexes.get(key, None) is not None:
-                        query_fields[indexes[key]] = val
+        if target is not None:
             for doc in target:
-                if bool(query_fields):
+                doc_in_set = True
+                if bool(query):
                     try:
-                        for index,expected in query_fields.iteritems():
+                        for index, expected in query.iteritems():
                             if doc[index] != expected:
-                                pass
+                                doc_in_set = False
+                                break
                     except:
-                        pass
-                yield doc
+                        break
+                if doc_in_set:
+                    yield doc
         yield None
 
-    def findOne(self, table_name, query):
-        cursor = self.find(table_name, query)
-        return next(cursor)
-
-    def findAll(self, table_name, query):
-        cursor = self.find(table_name, query)
-        results = []
-        for doc in cursor:
-            results.append(doc)
-        return results
-
-    def insert(self, table_name, row):
+    # Inserts a document.
+    # TODO: Implement primary keys and enforce uniqueness here
+    def insert(self, table_name, doc):
         target = self.db.get(table_name, None)
-        indexes = self.db.get(table_name + "_indexes", None)
-        if target is not None and indexes is not None:
-            unique_query = {}
-            for key in indexes:
-                unique_query[key] = row.get(key, None)
-            for doc in target:
-                if self.match(doc, unique_query):
-                    print "COLLISION"
-                    return False
-            target.append(row)
-        print target
-
-    def delete(self, table, **kwargs):
-        return "HI"
-
-    def match(self, doc, query):
-        for key, value in query:
-            if doc.get(key, None) != value:
-                return False
+        target.append(doc)
         return True
+
+    def delete(self, table_name, doc):
+        target = self.db.get(table_name, None)
+        if doc in target:
+            target.remove(doc)
+            return True
+        else:
+            return False

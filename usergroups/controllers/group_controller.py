@@ -28,7 +28,7 @@ class GroupController(Resource):
                 abort(400)
         except PrimaryKeyException as e:
             abort(403)
-        finally:
+        except:
             abort(400)
 
     def put(self, group_name=None):

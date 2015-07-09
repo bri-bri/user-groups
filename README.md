@@ -22,19 +22,21 @@ Any version of python2.7 with setuptools and pip, __Recommended__: virtualenv
 
 The steps:
 ```
-git clone git@github.com/bri-bri/user-groups.git && cd user-groups
+git clone git@github.com:bri-bri/user-groups.git && cd user-groups
 virtualenv env && . env/bin/activate
 pip install -r requirements.txt
 export USERGROUPS_ENV=DEVELOPMENT
 python runserver.py --port 5000
 ```
 #### Running integration tests
-Simply run the following command:
+Simply run the following command and verify the output manually:
 ```sh ./integration-test.sh```
+
+TODO... real unit tests
 
 #### Sending requests locally
 
 1. Without request parameters:
-```curl http://127.0.0.1:5000/users/<userid>```
+```curl -i http://127.0.0.1:5000/users/<userid>```
 2. With request parameters:
-```curl -X POST http://127.0.0.1:5000/users/ -d '{"userid":"user1", "first_name":"John", "last_name": "Doe", "groups":["gentlemen", "scholars"]}' -H "Content-type: application/json"```
+```curl -i -X POST http://127.0.0.1:5000/users/ -d '{"userid":"user1", "first_name":"John", "last_name": "Doe", "groups":["gentlemen", "scholars"]}' -H "Content-type: application/json"```

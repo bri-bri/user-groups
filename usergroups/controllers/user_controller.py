@@ -22,7 +22,7 @@ class UserController(Resource):
                 return "{0} inserted".format(user.userid)
         except PrimaryKeyException as e:
             abort(403)
-        finally:
+        except:
             abort(400)
 
 
